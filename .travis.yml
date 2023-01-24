@@ -1,0 +1,16 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+before_install:
+  - docker build -t natcobbinah/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true natcobbinah/react-test npm run test
+
+after_success: 
+  - docker build -t natcobbinah/multi-client ./client
+  - docker build -t natcobbinah/multi-nginx ./nginx
+  - docker build -t natcobbinah/multi-server ./server
+  - docker build -t natcobbinah/multi-worker ./worker
