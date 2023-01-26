@@ -14,3 +14,10 @@ after_success:
   - docker build -t natcobbinah/multi-nginx ./nginx
   - docker build -t natcobbinah/multi-server ./server
   - docker build -t natcobbinah/multi-worker ./worker
+    #Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    #Take those images and push them to docker hub
+  - docker push natcobbinah/multi-client
+  - docker push natcobbinah/multi-nginx 
+  - docker push natcobbinah/multi-server
+  - docker push natcobbinah/multi-worker
