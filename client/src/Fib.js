@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-const axios = require('axios').default;
+import axios from "axios";
 
 class Fib extends Component {
     state = {
