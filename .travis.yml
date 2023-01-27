@@ -21,3 +21,15 @@ after_success:
   - docker push natcobbinah/multi-nginx 
   - docker push natcobbinah/multi-server
   - docker push natcobbinah/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'docker-multicontainer'
+  env: 'dockermulticontainer-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-125161170067'
+  bucket_path: 'docker-multi'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
