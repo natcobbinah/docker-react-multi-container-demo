@@ -14,7 +14,7 @@ class Fib extends Component {
     }
 
     async fetchValues() {
-        const values = await fetch.get('/api/values/current');
+        const values = await fetch('/api/values/current').then(response => response.json()).catch(error => console.log(error))
         this.setState({
             values: values.data
         });
